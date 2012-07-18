@@ -25,8 +25,12 @@ def output2File(data, output_file):
     <?xml-stylesheet type="text/xsl" href="sms.xsl"?>
     <smses count="%s">""" % len(data))
     for addr, date, body, flag in data:
-        if flag == 3: flag = 1
-        if flag not in (3,2): flag = 1
+        if flag == 3:
+            flag = 2
+        elif flag == 2:
+            flag = 1
+        else:
+            flag = 1
         f.write("""<sms protocol="0" address="%s" date="%d000" type="%s" subject="null" body="%s" toa="null" sc_toa="null" service_center="null" read="1" status="-1" locked="0" readable_date="" contact_name="(Unknown)" />\n""" % (addr, date,flag,body))
     f.write("</smses>\n")
     f.close()
