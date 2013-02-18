@@ -38,6 +38,8 @@ def readiOS6SMSdb(c):
         else:
             sms_addr = ident
             sms_flag = 1
+        # fix timestamp start from year 2001.WTF!
+        sms_date += 978307200
         sms.append((sms_addr, sms_date, sms_body, sms_flag))
     return sms
 
